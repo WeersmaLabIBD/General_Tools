@@ -26,29 +26,29 @@ count=0
 with open(sys.argv[1]) as input_file:
 	for i, line in enumerate(input_file):
 		#Select header lines (first character ">")
-    if line.startswith(">"):
+		if line.startswith(">"):
       #Remove new line symbol
-			line=re.sub('\n', '', line)
+		line=re.sub('\n', '', line)
 			# Split header: separator is space, replace for "\t" in case of tab separation
-      old_id=line.split(" ")
+		old_id=line.split(" ")
 			#Select first word in the header 
-      old_id_t=old_id[0]
+		old_id_t=old_id[0]
 			#Select second word in the header
-      old_1=old_id[1]
-			old_2=old_id[2]
-			old_3=old_id[3]
+		old_1=old_id[1]
+		old_2=old_id[2]
+		old_3=old_id[3]
 			#Select fourth word in the header
-      old_4=old_id[4]
+		old_4=old_id[4]
 			#Get the first part of the first word/string that is separated by a dot "."
-      id=old_id_t.split('.')[0]
+ 		id=old_id_t.split('.')[0]
 			#Get the fourth part of the first word/string that is separated by a dot "."
-      count=old_id_t.split('.')[4]
+		count=old_id_t.split('.')[4]
 			#sample_id=line.split(sep, 1)[0]
 			#old_id=line[2:]
 			# Merge both first and fourth part and separate them by "_"
-      count2=count.split("_", 1)[-1]
+ 		count2=count.split("_", 1)[-1]
 			# Reprint the header with the fixed id name
-      print "%s_%s %s %s %s %s" % (id,count2,old_1,old_2,old_3,old_4)
+		print "%s_%s %s %s %s %s" % (id,count2,old_1,old_2,old_3,old_4)
 			#print'\n'
 		else: 
 			line=re.sub('\n', '', line)
