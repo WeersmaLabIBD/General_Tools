@@ -40,15 +40,16 @@ my_pvalue_co=pchisq(het_Sum, lower.tail = F, df=3)
 # SE = vector of standard errors 
 # df = degrees of freedom -> n-1 
 
-selection$inverse_var.ibd=1/selection$SE.IBD^2
-selection$inverse_var.mibs=1/selection$SE.MIBS^2
-selection$inverse_var.lld=1/selection$SE.LLD^2
+#calculate inverse variance per cohort
+selection$inverse_var.c1=1/Cohort1$SE.IBD^2
+selection$inverse_var.c2=1/Cohort2$SE.MIBS^2
+selection$inverse_var.c3=1/Cohort3$SE.LLD^2
 
 #Calculate SE
-selection$se=sqrt(1/(selection$inverse_var.ibd+selection$inverse_var.mibs+selection$inverse_var.lld))
+selection$se=sqrt(1/(selection$inverse_var.c1+selection$inverse_var.c2+selection$inverse_var.c3))
 
 #Calculate Beta
-selection$beta=(selection$inverse_var.ibd*selection$Coef.IBD+selection$inverse_var.mibs*selection$Coef.MIBS+selection$inverse_var.lld*selection$Coef.LLD)/(selection$inverse_var.ibd+selection$inverse_var.mibs+selection$inverse_var.lld)
+selection$beta=(selection$inverse_var.ibd*selection$Coef.c1+selection$inverse_var.mibs*selection$Coef.c2+selection$inverse_var.lld*selection$Coef.c3)/(selection$inverse_var.c1+selection$inverse_var.c2+selection$inverse_var.c3)
 	
 #Calculate Z-score
 selection$Z=selection$beta/selection$se
