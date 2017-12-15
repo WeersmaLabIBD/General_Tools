@@ -41,15 +41,15 @@ my_pvalue_co=pchisq(het_Sum, lower.tail = F, df=3)
 # df = degrees of freedom -> n-1 
 
 #calculate inverse variance per cohort
-selection$inverse_var.c1=1/Cohort1$SE.IBD^2
-selection$inverse_var.c2=1/Cohort2$SE.MIBS^2
-selection$inverse_var.c3=1/Cohort3$SE.LLD^2
+selection$inverse_var.c1=1/selection$SE.c1^2
+selection$inverse_var.c2=1/selection$SE.c2^2
+selection$inverse_var.c3=1/selection$SE.c3^2
 
 #Calculate SE
 selection$se=sqrt(1/(selection$inverse_var.c1+selection$inverse_var.c2+selection$inverse_var.c3))
 
 #Calculate Beta
-selection$beta=(selection$inverse_var.ibd*selection$Coef.c1+selection$inverse_var.mibs*selection$Coef.c2+selection$inverse_var.lld*selection$Coef.c3)/(selection$inverse_var.c1+selection$inverse_var.c2+selection$inverse_var.c3)
+selection$beta=(selection$inverse_var.c1*selection$Coef.c1+selection$inverse_var.c2*selection$Coef.c2+selection$inverse_var.c3*selection$Coef.c3)/(selection$inverse_var.c1+selection$inverse_var.c2+selection$inverse_var.c3)
 	
 #Calculate Z-score
 selection$Z=selection$beta/selection$se
