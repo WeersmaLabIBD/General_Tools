@@ -19,4 +19,4 @@ chr Pos Info  DP
 1 123456  APOE 999999999
 1 228372 APOA 888888888
 
-awk 'NR==FNR{a[$1,$2]=$3,next}($1,$2) in a{print $0, a[$1,$2]}' file1.txt file2.txt > outcome.txt
+awk 'NR==FNR{a[$1,$2]=$3;next}($1,$2) in a{print $0, a[$1,$2]}' file1.txt file2.txt > outcome.txt
