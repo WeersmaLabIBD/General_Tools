@@ -21,3 +21,21 @@ data3[is.na (data3)] <- 0   ## Change NA's for 0
 data3[data3=="0/1"]<-1 
 data3[data3=="1/1"]<-2
 write.table(data3,"~/Desktop/my_output.txt", sep="\t", quotes=F)
+
+
+## Convert list of, e.g medications per sample, into a summary table. 
+
+# EXAMPLE INPUT
+
+#SAMPLE_ID MED1 MED2 MED3
+#S1 PPI NA NA
+#S2 AB PPI TCA
+#S3 AB SSRI NA 
+
+data2=melt($INPUT, id.vars = "SAMPLE_ID")
+data3 <- dcast(data2, ...~value)
+data4=data3 %>% group_by(LLDEEPID) %>% summarise_each(funs(first(na.omit(.))))
+data5[is.na(data5)] <- "Non_user"
+rownames(data5)=data5$SAMPLE_ID
+data5$LLDEEPID=NULL
+data5[data5!="Non_user"]="User"
