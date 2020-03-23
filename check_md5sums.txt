@@ -1,0 +1,4 @@
+# an md5sums check tells you whether your files were copied completely to a new location, you can use this if you transferred data from a disk provided by a sequencing company, to the cluster
+md5sum -c md5.txt # make sure you execute this command in the folder where you have your md5sums stored, and that your files are stored in the exact same folder as when the md5sum file was created. otherwise, you may have to create md5sums manually
+# manual md5 sum creation (and compare to the md5sum txt file)
+md5sum filename > md5.txt # and compare to the md5 file that was delivered with your files
